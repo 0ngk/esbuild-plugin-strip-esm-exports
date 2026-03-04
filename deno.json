@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "dev": "deno run --watch mod.ts",
+    "build": "deno run --allow-read --allow-write --allow-env --allow-run build_npm.ts 0.1.0"
+  },
+  "test": {
+    "exclude": ["npm/"]
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "@deno/dnt": "jsr:@deno/dnt@^0.42.3",
+    "esbuild": "npm:esbuild@^0.27.3"
+  }
+}
