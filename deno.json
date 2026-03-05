@@ -1,7 +1,7 @@
 {
   "tasks": {
     "dev": "deno run --watch mod.ts",
-    "build": "deno run --allow-read --allow-write --allow-env --allow-run build_npm.ts 0.1.0"
+    "build": "deno run --allow-read --allow-write --allow-env --allow-run build_npm.ts"
   },
   "test": {
     "exclude": ["npm/"]
