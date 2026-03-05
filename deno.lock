@@ -13,6 +13,7 @@
     "jsr:@std/path@^1.1.1": "1.1.2",
     "jsr:@ts-morph/bootstrap@0.27": "0.27.0",
     "jsr:@ts-morph/common@0.27": "0.27.0",
+    "npm:acorn-loose@^8.5.2": "8.5.2",
     "npm:esbuild@~0.27.3": "0.27.3"
   },
   "jsr": {
@@ -199,6 +200,16 @@
       "os": ["win32"],
       "cpu": ["x64"]
     },
+    "acorn-loose@8.5.2": {
+      "integrity": "sha512-PPvV6g8UGMGgjrMu+n/f9E/tCSkNQ2Y97eFvuVdJfG11+xdIeDcLyNdC8SHcrHbRqkfwLASdplyR6B6sKM1U4A==",
+      "dependencies": [
+        "acorn"
+      ]
+    },
+    "acorn@8.16.0": {
+      "integrity": "sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==",
+      "bin": true
+    },
     "esbuild@0.27.3": {
       "integrity": "sha512-8VwMnyGCONIs6cWue2IdpHxHnAjzxnw2Zr7MkVxB2vjmQ2ivqGFb4LEG3SMnv0Gb2F/G/2yA8zUaiL1gywDCCg==",
       "optionalDependencies": [
@@ -237,6 +248,7 @@
     "dependencies": [
       "jsr:@deno/dnt@~0.42.3",
       "jsr:@std/assert@1",
+      "npm:acorn-loose@^8.5.2",
       "npm:esbuild@~0.27.3"
     ]
   }
