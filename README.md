@@ -1,6 +1,6 @@
 # esbuild-plugin-strip-esm-exports
 
-[![JSR](https://jsr.io/badges/@0ngk/esbuild-plugin-strip-esm-exports)](https://jsr.io/packages/@0ngk/esbuild-plugin-strip-esm-exports)
+[![JSR](https://img.shields.io/jsr/v/@0ngk/esbuild-plugin-strip-esm-exports)](https://jsr.io/@0ngk/esbuild-plugin-strip-esm-exports)
 ![npm version](https://img.shields.io/npm/v/esbuild-plugin-strip-esm-exports)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
