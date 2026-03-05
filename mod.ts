@@ -36,7 +36,7 @@ const stripOneTrailingSemicolon = (statement: string): string => {
   return statement;
 };
 
-export const stripEsmExports = (src: string) => {
+export const stripEsmExports = (src: string): string => {
   const ast = (() => {
     try {
       return acornLoose.parse(src, {

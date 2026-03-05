@@ -5,6 +5,7 @@ await emptyDir("./npm");
 await build({
   entryPoints: ["./mod.ts"],
   outDir: "./npm",
+  test: false,
   compilerOptions: {
     lib: ["ESNext"],
   },
