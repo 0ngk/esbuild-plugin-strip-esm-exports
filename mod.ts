@@ -36,7 +36,7 @@ const stripOneTrailingSemicolon = (statement: string): string => {
   return statement;
 };
 
-export const stripExports = (src: string) => {
+export const stripEsmExports = (src: string) => {
   const ast = (() => {
     try {
       return acornLoose.parse(src, {
@@ -125,7 +125,7 @@ export const stripExports = (src: string) => {
   return nextSrc;
 };
 
-export default function stripExportsPlugin(): Plugin {
+export default function stripEsmExportsPlugin(): Plugin {
   return {
     name: "strip-esm-exports",
     setup(build: PluginBuild) {
@@ -137,7 +137,7 @@ export default function stripExportsPlugin(): Plugin {
 
         for (const outputFile of outputFiles) {
           const text = outputFile.text;
-          const patched = stripExports(text);
+          const patched = stripEsmExports(text);
 
           if (patched !== text) {
             outputFile.contents = new TextEncoder().encode(patched);

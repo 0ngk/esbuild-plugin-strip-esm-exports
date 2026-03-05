@@ -23,7 +23,8 @@ await build({
       url: "git+https://github.com/0ngk/esbuild-plugin-strip-esm-exports.git",
     },
     bugs: {
-      url: "git+https://github.com/0ngk/esbuild-plugin-strip-esm-exports/issues",
+      url:
+        "git+https://github.com/0ngk/esbuild-plugin-strip-esm-exports/issues",
     },
   },
   postBuild() {
