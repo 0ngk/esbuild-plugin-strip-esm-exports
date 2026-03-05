@@ -16,6 +16,7 @@ await build({
     version: Deno.args[0]?.replace(/^v/, ""),
     description:
       "An esbuild plugin that removes ESM export statements from bundled output.",
+    keywords: ["esbuild-plugin", "esbuild"],
     license: "MIT",
     repository: {
       type: "git",
