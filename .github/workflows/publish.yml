@@ -1,0 +1,61 @@
+name: Publish
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-to-jsr:
+    name: Publish to JSR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set release version from tag
+        shell: bash
+        run: |
+          RELEASE_TAG="${GITHUB_REF_NAME}"
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid release tag: $RELEASE_TAG. Expected format: vMAJOR.MINOR.PATCH (SemVer)." >&2
+            exit 1
+          fi
+          echo "RELEASE_VERSION=${RELEASE_TAG#v}" >> "$GITHUB_ENV"
+
+      - name: Sync deno.json version
+        shell: bash
+        run: |
+          node -e 'const fs=require("node:fs"); const path="deno.json"; const config=JSON.parse(fs.readFileSync(path,"utf8")); config.version=process.env.RELEASE_VERSION; fs.writeFileSync(path, JSON.stringify(config, null, 2)+"\n");'
+
+      - name: Publish package
+        run: npx jsr publish
+
+  publish-to-npm:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Build npm package
+        run: deno task build $RELEASE_VERSION
+
+      - name: Setup Node/npm
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Publish to npm
+        run: npm publish npm/ --access=public
