@@ -13,7 +13,7 @@ await build({
   },
   package: {
     name: "esbuild-plugin-strip-esm-exports",
-    version: Deno.args[0],
+    version: Deno.args[0]?.replace(/^v/, ""),
     description:
       "An esbuild plugin that removes ESM export statements from bundled output.",
     license: "MIT",
@@ -22,8 +22,7 @@ await build({
       url: "git+https://github.com/0ngk/esbuild-plugin-strip-esm-exports.git",
     },
     bugs: {
-      url:
-        "git+https://github.com/0ngk/esbuild-plugin-strip-esm-exports/issues",
+      url: "git+https://github.com/0ngk/esbuild-plugin-strip-esm-exports/issues",
     },
   },
   postBuild() {
