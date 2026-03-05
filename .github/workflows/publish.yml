@@ -22,13 +22,14 @@ jobs:
           fi
           echo "RELEASE_VERSION=${RELEASE_TAG#v}" >> "$GITHUB_ENV"
 
-      - name: Sync deno.json version
-        shell: bash
-        run: |
-          node -e 'const fs=require("node:fs"); const path="deno.json"; const config=JSON.parse(fs.readFileSync(path,"utf8")); config.version=process.env.RELEASE_VERSION; fs.writeFileSync(path, JSON.stringify(config, null, 2)+"\n");'
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
 
       - name: Publish package
-        run: npx jsr publish
+        shell: bash
+        run: deno publish --set-version "$RELEASE_VERSION"
 
   publish-to-npm:
     name: Publish to npm
